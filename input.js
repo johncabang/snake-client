@@ -11,7 +11,6 @@ const setupInput = function(conn) {
   stdin.setRawMode(true);
   stdin.setEncoding('utf8');
   stdin.resume();
-
   stdin.on('data', handleUserInput); // callback handler
   return stdin;
 };
@@ -19,7 +18,7 @@ const setupInput = function(conn) {
 const handleUserInput = function(key) {
   if (key === '\u0003') { // \u0003 maps to CTRL+C input
     process.exit();
-  } else if (key === '\u0061') {
+  } else if (key === '\u0061') {  // unicode characters
     connection.write('Move: left');
   } else if (key === '\u0073') {
     connection.write('Move: down');
@@ -27,6 +26,8 @@ const handleUserInput = function(key) {
     connection.write('Move: right');
   } else if (key === '\u0077') {
     connection.write('Move: up');
+  } else if (key === '\u0071') {
+    connection.write('Say:  YOU CAN DO IT!');
   }
 };
 
